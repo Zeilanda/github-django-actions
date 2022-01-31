@@ -10,13 +10,19 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  run-tests:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.8"
+          - "3.9"
+          - "3.10"
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.9
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: "3.9"
@@ -27,4 +33,4 @@ jobs:
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
-      run: python calendar_valentine/manage.py test
+      run: python calendar_valentine/manage.py test calendar_valentine/
