@@ -31,6 +31,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run migrations
-      run: python manage.py migrate
+      run: python calendar_valentine/manage.py migrate calendar_valentine/
     - name: Run tests
       run: python calendar_valentine/manage.py test calendar_valentine/
