@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Карточки дней
+{% endblock %}
+
+{% block main_container %}
+
+
+
+    {% if user.is_authenticated %}
+        <div class="container-md">
+        <h2>Карточки дней</h2>
+            <div><a href="{% url 'cards:index' %}">На главную</a></div>
+            <ul>
+                {% for card in card_list %}
+                    <li>
+                        {#                    <a href="/cards/{{ card.id }}/">{{ card }}</a>#}
+                        <a href="{{ card.get_absolute_url }}">{{ card }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="container-md">
+            <p>Пожалуйста, авторизируйтесь</p>
+            <p><a href="{% url 'calendar_auth:login' %}">Войти</a></p>
+
+            <p><a href="{% url 'calendar_auth:user_create' %}">Регистрация</a></p>
+        </div>
+    {% endif %}
+{% endblock %}

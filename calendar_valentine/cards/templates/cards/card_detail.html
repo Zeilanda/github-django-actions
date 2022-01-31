@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Карточки дней
+{% endblock %}
+
+
+{% block main_container %}
+    <div class="container-md">
+        <div>
+            <p>
+                <a href="{% url 'cards:cards_list' %}">Ко всем карточкам</a>
+            </p>
+        </div>
+        <h2>{{ card.title }}</h2>
+        <div class="card" style="width: 24rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+
+                <p class="card-text">{{ card.body }}</p>
+            </div>
+            <div class="card-body">
+                <a href="{{ card.get_previous_by_pub_date.get_absolute_url }}" class="card-link">Предыдущий день</a>
+                <a href="{{ card.get_next_by_pub_date.get_absolute_url }}" class="card-link">Следующий день</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

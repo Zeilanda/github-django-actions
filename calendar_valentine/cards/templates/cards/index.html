@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+    Адвент СВ
+{% endblock %}
+
+{% block main_container %}
+    <div class="container">
+        <h2>Добро пожаловать в адвент-календарь ко дню Святого Валентина!</h2>
+    </div>
+
+    <div class="container">
+
+        {#        <a href="/">Main</a>#}
+
+        <p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'cards:cards_list' %}">Карточки дней</a>
+            {% endif %}
+        </p>
+        <p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'calendar_auth:logout' %}">Выйти ({{ user.username }})</a>
+            {% else %}
+                <a href="{% url 'calendar_auth:login' %}">Войти</a>
+            {% endif %}
+        </p>
+        <p>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'calendar_auth:user_create' %}">Регистрация</a>
+            {% endif %}
+        </p>
+
+    </div>
+
+
+{% endblock %}
